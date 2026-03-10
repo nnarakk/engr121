@@ -1,0 +1,33 @@
+import machine
+import utime
+
+pir_sensor = machine.Pin(14, machine.Pin.IN)
+buzzer = machine.Pin(15, machine.Pin.OUT)
+led = machine.Pin(16, machine.Pin.OUT)
+
+print("Intruder Alarm Start!")
+
+while True:
+    if pir_sensor.value() == 1:
+        print("Motion detected!")
+
+        while pir_sensor.value() == 1:
+            buzzer.on()
+            led.on()
+            utime.sleep(0.1)
+
+            if pir_sensor.value() == 0:
+                break
+
+            buzzer.off()
+            led.off()
+            utime.sleep(0.1)
+
+        buzzer.off()
+        led.off()
+
+    else:
+        buzzer.off()
+        led.off()
+        utime.sleep(0.05)
+
