@@ -1,0 +1,22 @@
+from machine import Pin
+import utime
+
+pir = Pin(28, Pin.IN)
+
+print("Warming up PIR...")
+utime.sleep(30)
+print("Ready.")
+
+cooldown = False
+
+while True:
+    if pir.value() == 1 and not cooldown:
+        print("MOTION DETECTED")
+        cooldown = True
+        utime.sleep(2)   # ignore retriggers for 2 sec
+
+    elif pir.value() == 0 and cooldown:
+        print("No motion")
+        cooldown = False
+
+    utime.sleep(0.1)
