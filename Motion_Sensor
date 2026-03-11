@@ -4,16 +4,16 @@ import utime
 pir = Pin(28, Pin.IN)
 
 def save_to_sd():
-    print("Saving file to SD card...")
+    print('Saving file to SD card...')
     #SD card code here
 
-print("Warming up PIR...")
+print('Warming up')
 utime.sleep(30)
-print("Ready.")
+print('Ready')
 
 while True:
     if pir.value() == 1:
-        print("MOTION DETECTED")
+        print('MOTION DETECTED')
         save_to_sd()
         utime.sleep(3)
     utime.sleep(0.1)
