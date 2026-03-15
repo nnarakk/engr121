@@ -8,6 +8,12 @@ from secrets import *
 #This program's behavior is to connect pico to wifi
 
 def do_connect(ssid=secrets['ssid'],psk=secrets['password']):
+    '''Parameters (2):
+    ssid (String): Name of Wifi
+    password (String): Wifi password
+    Functionality: Connects pico to Wifi
+    Return: String
+    '''
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     wlan.connect(ssid, psk)
